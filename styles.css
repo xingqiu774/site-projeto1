@@ -1,0 +1,271 @@
+*       {
+    padding: 0px;
+    margin: 0px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body        {
+    background-color: antiquewhite;
+}
+
+.container2     {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: brown;
+    box-shadow: 0 8px 8px rgba(0, 0, 0, 0.3);
+    border-radius: 20px;
+    color: white;
+    display: flex;
+    overflow: auto;
+    width: 20%;
+    margin-left: 5%;
+    height: 50vh;
+
+    position: relative;
+    top: -60px;
+}
+
+.container3{
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    justify-content:space-around;
+    align-items: center;
+    background-color:rgb(63, 38, 217);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    height: 15vh;
+}
+
+.container4     {
+    display: flex;
+    justify-content: space-around;
+    padding-top: 5vh;
+    gap: 5%;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.container5     {
+    display: flex;
+    justify-content: center;
+}
+
+.container6     {
+    display: flex;
+    flex-direction: row;
+    margin-top: 15px;
+}
+
+.container7     {
+    
+    flex: auto;
+    display: flex;
+    flex-wrap: wrap;
+
+    background-color: aliceblue;
+    min-height: 40vh;
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-bottom: 15px;
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3);
+    align-items: center;
+    justify-content: center;
+}
+
+.container8     {
+    display: flex;
+    width: 20%;
+    justify-content: space-around;
+}
+
+.infobox{
+
+    background-color: aliceblue;
+    margin: 10px;
+    border-radius: 30px;
+    border-style: dotted;
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+    
+}
+
+.all{
+
+    flex: auto;
+    display: flex;
+    background-color: aqua;
+}
+
+.leftside{
+    
+    color: red;
+    background-color: chartreuse;
+    min-width: 11%;
+    max-width: 11%;
+    width: 11%;
+}
+.rightside{
+    min-width: 89%;
+    max-width: 89%;
+    width: 89%;
+    background-color: crimson;
+}
+
+.scontainer2        {
+    border: solid;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    text-align: center;
+    
+}
+
+.searchContainer        {
+    justify-self: left;
+    display: flex;
+    justify-content: center;
+    padding-top: 15px;
+}
+
+.searchBox      {
+    padding: 10px 20px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border: solid 2px;
+    background-color: aliceblue;
+}
+
+.searchButton       {
+    padding: 10px 20px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    cursor: pointer;
+    position: relative;
+    left: -10px;
+    background-color: aliceblue;
+    border:solid 2px;
+    border-left: hidden;
+}
+
+.red {
+    color: red;
+}
+
+.centerbox {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5vh;
+}
+
+.outlined{
+    text-shadow: 1px 1px white, -1px 1px white, 1px -1px white, -1px -1px white;
+}
+
+
+.centered {
+    text-align: center;
+}
+
+.bottomBox      {
+    text-align: center;
+    background-color:rgb(63, 38, 217);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 10vh;
+}
+
+.bdiv       {
+    margin: 20px;
+    display: flex;
+    color: white;
+}
+
+.contact        {
+    gap: 10px;
+}
+
+.logoUFC        {
+    text-decoration: none;
+    color: white;
+}
+
+
+.pcs {
+    display: flex;
+    gap: 20px;
+}
+
+.container3 a  {
+    text-decoration: none;
+    color: white;
+}
+
+.quemSomos      {
+    background-color: rgb(247, 224, 194);
+    height: auto;
+    width: 42%;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    position: relative;
+    top: 10vh;
+}
+
+#lpSC       {
+    padding: 0;
+    margin-left: auto;
+    justify-self: center;
+}
+
+.searchButton:active .searchButton:hover {
+    background-color: antiquewhite;
+}
+
+.staff  {
+    background-color: aquamarine;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    position: relative;
+    top: 10vh;
+    width: 42%;
+}
+
+.staff img  {
+    border-radius: 50%;
+}
+
+.shape      {
+    position: relative;
+    display: inline-block;
+}
+
+.tt {
+    visibility: hidden;
+    width: auto;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+    position: absolute;
+    z-index: 1;
+    top: 105%;
+    left: 0%;
+}
+
+.tt-teste:hover .tt {
+    visibility: visible;
+  }
