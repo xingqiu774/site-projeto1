@@ -35,14 +35,9 @@ var has_or_not = 0;
 
 async function open_that_json(tag, pid) {
     console.log("lendo open json")
-    const requestURL =
-        "artigos.json";
-    const request = new Request(requestURL);
+    const response = await fetch('http://localhost:5000/api/projetos');
+    const datalist = await response.json();
 
-    const response = await fetch(request);
-    const datalist_list = await response.text();
-
-    const datalist = JSON.parse(datalist_list);
     //populateHeader(datalist);
 
     has_or_not = 0;
@@ -59,16 +54,16 @@ async function open_that_json(tag, pid) {
 
 }
 
-function check_for_tag(obj, target, pid) {
+function check_for_tag(projetos, target, pid) {
     console.log("lendo check tag")
     const section = document.getElementById("fetched");
-    const articles = obj.artigos;
+    //const articles = obj.artigos;
 
-    const maximumthing = Math.min(pid, articles);
+    //const maximumthing = Math.min(pid, articles);
 
     var i = -1;
 
-    for (const arti of articles) {
+    for (const projeto of projetos) {
         i = i+1;
         if ( (i < pid) || (i > pid+51) ){
             continue;
@@ -78,10 +73,10 @@ function check_for_tag(obj, target, pid) {
         //for (const i = 0; i < maximumthing; i += 1) {
 
 
-        const tagmax = arti.tags;
-        for (const tag0 of tagmax) {
+        //const tagmax = arti.tags;
+        for (const tag of projeto.tags) {
 
-            if (tag0.toLowerCase() == target.toLowerCase()) {
+            if (tag.toLowerCase() == target.toLowerCase()) {
                 console.log("tem sim")
                 has_or_not = 1;
 
@@ -92,13 +87,13 @@ function check_for_tag(obj, target, pid) {
 
                 const link = document.createElement('a');
                 link.href = 'arquivo.html';
-                link.textContent = arti.titulo;
+                link.textContent = projeto.nome;
                 myArticle.appendChild(link);
 
                 const linebreak = document.createElement("br");
 
                 const myAuthor = document.createElement("h5");
-                myAuthor.textContent = arti.autor;
+                myAuthor.textContent = projeto.autor;
                 myAuthor.style.textAlign = "center";
 
                 const linebreak2 = document.createElement("br");
@@ -106,7 +101,7 @@ function check_for_tag(obj, target, pid) {
 
 
                 const myDesc = document.createElement("h6");
-                myDesc.textContent = arti.conteudo;
+                myDesc.textContent = projeto.descricao;
                 myDesc.style.textAlign = "center";
 
 
@@ -117,11 +112,11 @@ function check_for_tag(obj, target, pid) {
 
                 myArticle.appendChild(myAuthor);
                 myArticle.appendChild(linebreak2);
-                if ((arti.imagem == "") && (typeof arti.imagem != undefined)) {
+                if ( ((projeto.imagem == "") && (typeof projeto.imagem != undefined)) || 1 == 1 ) {
                     myArticle.appendChild(myDesc);
                 } else {
                     const myImg = document.createElement('img');
-                    myImg.src = arti.imagem;
+                    myImg.src = projeto.imagem;
                     myImg.setAttribute('width', "90%");
                     myImg.setAttribute('height', "50%");
                     myImg.style.position = "absolute";
