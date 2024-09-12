@@ -94,25 +94,15 @@ body        {
 }
 
 .all{
-
-    flex: auto;
     display: flex;
-    background-color: aqua;
+    justify-content: center;
+
 }
 
-.leftside{
-    
-    color: red;
-    background-color: chartreuse;
-    min-width: 11%;
-    max-width: 11%;
-    width: 11%;
-}
 .rightside{
-    min-width: 89%;
-    max-width: 89%;
-    width: 89%;
-    background-color: crimson;
+    min-width: 90%;
+    max-width: 90%;
+    width: 90%;
 }
 
 .scontainer2        {
@@ -151,6 +141,50 @@ body        {
     background-color: aliceblue;
     border:solid 2px;
     border-left: hidden;
+}
+
+.classContainer {
+    display: flex;
+    height: 100vh;
+}
+
+.archiveContainer   {
+    display: flex;
+    flex-direction: column;  
+    width: 20%;
+    background-color: #555;
+    box-sizing: border-box;
+}
+
+.archiveItem {
+    margin-top: 5px;
+    margin-bottom: 5px; 
+    word-wrap: break-word; 
+}
+
+.archiveInfo    {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+}
+
+.archiveCPF {
+    text-align: left;
+    width: 90%;
+    background-color: aqua;
+}
+
+.previewhelp    {
+    margin-top: 3%;
+
+    height: 40vh;
+    width: 90%;
+}
+
+.previewbox {
+    height: 100%;
+    width: 100%;
 }
 
 .red {
@@ -269,3 +303,7 @@ body        {
 .tt-teste:hover .tt {
     visibility: visible;
   }
+
+#archives   {
+    text-align: center;
+}
