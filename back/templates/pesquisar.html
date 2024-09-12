@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pesquisar Projetos e Arquivos</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .filter-options {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-4">
+        <h1>Pesquisar Projetos e Arquivos</h1>
+        <form action="{{ url_for('pesquisar') }}" method="post">
+            <div class="form-group">
+                <input type="text" name="termo" class="form-control" placeholder="Digite o termo de pesquisa">
+            </div>
+            <div class="form-group">
+                <input type="checkbox" id="showFilters" onclick="toggleFilters()"> Mostrar filtros
+                <div class="filter-options" id="filterOptions">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="filters" value="nome" id="filterNome">
+                        <label class="form-check-label" for="filterNome">
+                            Nome
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="filters" value="extensao" id="filterExtensao">
+                        <label class="form-check-label" for="filterExtensao">
+                            Extensão
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="filters" value="tags" id="filterTags">
+                        <label class="form-check-label" for="filterTags">
+                            Tags
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="filters" value="area_conhecimento" id="filterArea">
+                        <label class="form-check-label" for="filterArea">
+                            Área de Conhecimento
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="filters" value="habilidades" id="filterHabilidades">
+                        <label class="form-check-label" for="filterHabilidades">
+                            Habilidades
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Pesquisar</button>
+        </form>
+    </div>
+
+    <script>
+        function toggleFilters() {
+            var filterOptions = document.getElementById('filterOptions');
+            if (document.getElementById('showFilters').checked) {
+                filterOptions.style.display = 'block';
+            } else {
+                filterOptions.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

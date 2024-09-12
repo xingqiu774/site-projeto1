@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar Projeto</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script>
+        function addFileInput() {
+            const container = document.getElementById('file-inputs');
+            const index = container.children.length;
+            const html = `
+                <div class="form-group">
+                    <label for="file_${index}">Arquivo ${index + 1}:</label>
+                    <input type="file" name="arquivos_${index}" class="form-control">
+                    <label for="nome_arquivo_${index}">Nome do Arquivo:</label>
+                    <input type="text" name="nome_arquivo_${index}" class="form-control">
+                    <label for="tipo_arquivo_${index}">Tipo do Arquivo:</label>
+                    <input type="text" name="tipo_arquivo_${index}" class="form-control">
+                    <label for="tags_arquivo_${index}">Tags do Arquivo (separadas por vírgula):</label>
+                    <input type="text" name="tags_arquivo_${index}" class="form-control">
+                    <label for="area_conhecimento_${index}">Área de Conhecimento:</label>
+                    <input type="text" name="area_conhecimento_${index}" class="form-control">
+                    <label for="habilidades_${index}">Habilidades (separadas por vírgula):</label>
+                    <input type="text" name="habilidades_${index}" class="form-control">
+                </div>
+            `;
+            container.insertAdjacentHTML('beforeend', html);
+        }
+    </script>
+</head>
+<body>
+    <div class="container mt-4">
+        <h1>Criar Projeto e Adicionar Arquivos</h1>
+        <form action="{{ url_for('criar_projeto') }}" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="nome">Nome do Projeto:</label>
+                <input type="text" name="nome" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="descricao">Descrição do Projeto:</label>
+                <textarea name="descricao" class="form-control" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="data_envio">Data de Envio:</label>
+                <input type="date" name="data_envio" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="tags">Tags do Projeto (separadas por vírgula):</label>
+                <input type="text" name="tags" class="form-control">
+            </div>
+            <div id="file-inputs">
+                <!-- Campos de arquivos serão adicionados aqui -->
+            </div>
+            <button type="button" class="btn btn-secondary" onclick="addFileInput()">Adicionar Novo Arquivo</button>
+            <button type="submit" class="btn btn-primary">Criar Projeto e Enviar Arquivos</button>
+        </form>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

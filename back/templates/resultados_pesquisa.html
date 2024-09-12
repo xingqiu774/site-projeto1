@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados da Pesquisa</title>
+</head>
+<body>
+    <h1>Resultados da Pesquisa</h1>
+    <h2>Projetos</h2>
+    {% for projeto in resultados['projetos'] %}
+        <div>
+            <h3>{{ projeto['nome'] }}</h3>
+            <p>Descrição: {{ projeto['descricao'] }}</p>
+            <p>Tags: {{ projeto['tags'] | join(', ') }}</p>
+
+            {% if projeto['arquivos'] %}
+                <h4>Arquivos Associados:</h4>
+                <ul>
+                    {% for arquivo in projeto['arquivos'] %}
+                        <li>
+                            Nome: {{ arquivo['nome'] }}<br>
+                            Tipo: {{ arquivo['tipo'] }}<br>
+                            <a href="{{ url_for('download_arquivo', file_id=arquivo['file_id']) }}">Baixar</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>Não há arquivos associados.</p>
+            {% endif %}
+        </div>
+    {% endfor %}
+    
+    <h2>Arquivos Independentes</h2>
+    <ul>
+        {% for arquivo in resultados['arquivos'] %}
+            <li>
+                Nome: {{ arquivo['nome'] }}<br>
+                Tipo: {{ arquivo['tipo'] }}<br>
+                <a href="{{ url_for('download_arquivo', file_id=arquivo['file_id']) }}">Baixar</a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
