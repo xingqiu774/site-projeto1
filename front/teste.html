@@ -1,16 +1,65 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Update URL Example</title>
+    <title>Resultados da Busca</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
 </head>
 <body>
-    <!-- Link to trigger URL update -->
+    <!-- Flexbox da barra superior -->
+    <div class="container3">
+        <div class="sc3 sc4">
+            <a href="lp.html"><img src="" alt="Logo" id="ttiger"></a>
+            <form action="resultados.html" method="get" autocomplete="on">
+                <input type="text" name="tag" placeholder="Digite a tag para buscar" class="searchBox" id="pesquisa">
+                <button type="submit" class="searchButton">Buscar</button>
+            </form>
+        </div>
+        <div class="container8">
+            <a href="">Todos os arquivos</a>
+            <a href="" id="editor">Editor</a>
+        </div>
+    </div>
+
+    <br>
+
+
+<div class="all">
     
 
-    <script>
-        
-    </script>
-</body>
+    
+    <div class="rightside">
+
+    <h2 class="outlined centered titulo"> <a href=""> Resultados </a></h2>
+    <a href="#" id="updateUrlLink" data-pid="50">→</a>
+
+    <!-- Flexbox da área de busca -->
+        <div class="searchContainer">
+            <form action="resultados.html" method="get" autocomplete="on">
+                <input type="text" name="tag" placeholder="Digite a tag para buscar" class="searchBox" id="pesquisa">
+                <button type="submit" class="searchButton">Buscar</button>
+            </form>
+    </div>
+
+    <!-- JS pegando a tag -->
+    <div class="centerbox">
+        <h1 id="resultados"></h1>
+    </div>
+
+    <!-- Flexbox da área de resultados -->
+    <div class="container7" id="fetched">    
+        <br>
+
+
+    </div>
+
+
+    </div><!-- Fim da parte da direita VIVA A ESQUERDA!-->
+
+    </div><!-- Fim da super caixa -->
+
+
+</body> 
 </html>
