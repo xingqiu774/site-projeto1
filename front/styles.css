@@ -114,10 +114,26 @@ body        {
 
 }
 
+.leftside   {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    background-color: #555;
+    gap: 10%;
+    padding-top: 10%;
+    align-items: center;
+}
+
 .rightside{
     min-width: 90%;
     max-width: 90%;
     width: 90%;
+}
+
+.choosebox select {
+    border-radius: 10px;
+    width: 100px;
+    text-align: center;
 }
 
 .scontainer2        {
