@@ -123,7 +123,7 @@ function check_for_tag(projetos, target, pid) {
                     myImg.style.top = "10vh";
                     myImg.style.left = "1vw";
 
-                    myArticle.appendChild(myImg);
+                    myArticle.appendChild(myImg); 
 
 
                 }
