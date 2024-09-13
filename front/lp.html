@@ -33,28 +33,33 @@
             <button type="submit" class="searchButton">Buscar</button>
         </form>
     </div>
+    <!-- Flexbox do filtro -->  
     <div class="searchContainer">
-    <select name="nome" id="nome">
-        <option value="on">Nome ON</option>
-        <option value="off">Nome OFF</option>
-    </select>
-    <select name="extensao" id="extensao">
-        <option value="on">Extensão ON</option>
-        <option value="off">Extensão OFF</option>
-    </select>
-    <select name="tags" id="tags">
-        <option value="on">Tags ON</option>
-        <option value="off">Tags OFF</option>
-    </select>
-    <select name="area_conhecimento" id="area_conhecimento">
-        <option value="on">Área ON</option>
-        <option value="off">Área OFF</option>
-    </select>
-    <select name="habilidades" id="habilidades">
-        <option value="on">Habilidade ON</option>
-        <option value="off">Habilidade OFF</option>
-    </select>
-</div>
+        <details>
+            <summary id="summa">Filtro</summary>
+            <select name="nome" id="nome">
+                <option value="on">Nome ON</option>
+                <option value="off">Nome OFF</option>
+        
+            </select>
+            <select name="extensao" id="extensao">
+                <option value="on">Extensão ON</option>
+                <option value="off">Extensão OFF</option>
+            </select>
+            <select name="tags" id="tags">
+                <option value="on">Tags ON</option>
+                <option value="off">Tags OFF</option>
+            </select>
+            <select name="area_conhecimento" id="area_conhecimento">
+                <option value="on">Área ON</option>
+                <option value="off">Área OFF</option>
+            </select>
+            <select name="habilidades" id="habilidades">
+                <option value="on">Habilidade ON</option>
+                <option value="off">Habilidade OFF</option>
+            </select>
+        </details>
+    </div>
 
     <!-- Flexbox da área inferior -->
     <div class="bottomBox">

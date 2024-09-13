@@ -329,3 +329,8 @@ body        {
     border-color: black;
     border-radius: 10px;
 }
+
+#summa  {
+    text-align: center;
+    padding: 10px;
+}
