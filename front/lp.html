@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Landing Page</title>
     <link rel="stylesheet" href="styles.css">
-    
+    <script src="script_lp.js" defer></script>
 </head>
 <body>
 
@@ -28,12 +28,33 @@
 
     <!-- Flexbox da área de busca -->        
     <div class="searchContainer" id="lpSC">
-        <form action="resultados.html" method="get">
+        <form id="searchForm" action="resultados.html" method="get" autocomplete="on">
             <input type="text" name="tag" placeholder="Digite a tag para buscar" class="searchBox" id="pesquisa">
             <button type="submit" class="searchButton">Buscar</button>
         </form>
     </div>
-   
+    <div class="searchContainer">
+    <select name="nome" id="nome">
+        <option value="on">Nome ON</option>
+        <option value="off">Nome OFF</option>
+    </select>
+    <select name="extensao" id="extensao">
+        <option value="on">Extensão ON</option>
+        <option value="off">Extensão OFF</option>
+    </select>
+    <select name="tags" id="tags">
+        <option value="on">Tags ON</option>
+        <option value="off">Tags OFF</option>
+    </select>
+    <select name="area_conhecimento" id="area_conhecimento">
+        <option value="on">Área ON</option>
+        <option value="off">Área OFF</option>
+    </select>
+    <select name="habilidades" id="habilidades">
+        <option value="on">Habilidade ON</option>
+        <option value="off">Habilidade OFF</option>
+    </select>
+</div>
 
     <!-- Flexbox da área inferior -->
     <div class="bottomBox">

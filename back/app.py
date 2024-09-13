@@ -25,28 +25,26 @@ def converter_id_str(documents):
 
 def build_query(term, filters):
     regex = {"$regex": term, "$options": "i"}
-    query = {}
+    query = {"$or": []}  # Start with an empty list of conditions
 
-    if "nome" in filters:
-        query["nome"] = regex
-    if "extensao" in filters:
-        query["extensao"] = regex
-    if "tags" in filters:
-        query["tags"] = regex
-    if "area_conhecimento" in filters:
-        query["area_conhecimento"] = regex
-    if "habilidades" in filters:
-        query["habilidades"] = regex
-
-    return query
-
-# Função de pesquisa de projetos e arquivos
-def search(term, filters):
-    regex = {"$regex": term, "$options": "i"}
-    query = build_query(term, filters)
+    # Apply filters if they are turned on
+    if filters.get('nome') == 'on':
+        query["$or"].append({"nome": regex})
     
-    if not query:
-        # Se nenhum filtro for escolhido a pesquisa será feita em todos os campos
+    if filters.get('extensao') == 'on':
+        query["$or"].append({"extensao": regex})
+    
+    if filters.get('tags') == 'on':
+        query["$or"].append({"tags": regex})
+    
+    if filters.get('area_conhecimento') == 'on':
+        query["$or"].append({"area_conhecimento": regex})
+    
+    if filters.get('habilidades') == 'on':
+        query["$or"].append({"habilidades": regex})
+
+    # If no specific filters were added, search all fields by default
+    if not query["$or"]:
         query = {"$or": [
             {"nome": regex},
             {"extensao": regex},
@@ -54,15 +52,73 @@ def search(term, filters):
             {"area_conhecimento": regex},
             {"habilidades": regex}
         ]}
+    
+    return query
 
+
+def search(term, filters):
+    regex = {"$regex": term, "$options": "i"}
+    query = {"$or": []}
+
+    # Apply filters based on what's enabled ('on') in the front-end
+    if filters.get('nome', True):
+        query["$or"].append({"nome": regex})
+
+    if filters.get('extensao', True):
+        query["$or"].append({"extensao": regex})
+
+    if filters.get('tags', True):
+        query["$or"].append({"tags": regex})
+
+    if filters.get('area_conhecimento', True):
+        query["$or"].append({"area_conhecimento": regex})
+
+    if filters.get('habilidades', True):
+        query["$or"].append({"habilidades": regex})
+
+    if not query["$or"]:
+        # If no filter is selected, search all fields by default
+        query = {
+            "$or": [
+                {"nome": regex},
+                {"extensao": regex},
+                {"tags": regex},
+                {"area_conhecimento": regex},
+                {"habilidades": regex}
+            ]
+        }
+
+    # Search for matching projects
     projetos = converter_id_str(list(db_connection.Projetos.find(query)))
+    
+    # For each project, find its related files (arquivos)
     for projeto in projetos:
         projeto["arquivos"] = converter_id_str(list(db_connection.Arquivos.find({"projeto_id": projeto["_id"]})))
 
+    # Search for matching files (arquivos)
     arquivos = converter_id_str(list(db_connection.Arquivos.find(query)))
 
     return {"projetos": projetos, "arquivos": arquivos}
 
+
+
+# function to search
+@app.route('/api/projetos', methods=['POST'])
+def api_pesquisar_projetos():
+    data = request.json
+    term = data.get("term")
+    filters = data.get("filters", {})
+
+    resultados = search(term, filters)  # This function already searches both projetos and arquivos
+    return jsonify(resultados), 200
+
+
+
+
+
+
+
+"""
 @app.route('/pesquisar', methods=['GET', 'POST'])
 def pesquisar():
     if request.method == 'POST':
@@ -71,6 +127,12 @@ def pesquisar():
         resultados = search(termo, filtros)
         return render_template('resultados_pesquisa.html', resultados=resultados)
     return render_template('pesquisar.html')
+
+"""
+
+
+
+
 
 @app.route('/criar_projeto', methods=['GET', 'POST'])
 def criar_projeto():
@@ -140,18 +202,18 @@ def download_arquivo(file_id):
     file = fs.get(ObjectId(file_id))
     return send_file(io.BytesIO(file.read()), download_name=file.filename, as_attachment=True)
 
+
+
+
+
 @app.route('/api/projetos', methods=['GET'])
 def api_listar_projetos():
     projetos = converter_id_str(list(db_connection.Projetos.find()))
-    #for projeto in projetos:
-        #projeto['arquivos'] = converter_id_str(list(db_connection.Arquivos.find({"projeto_id": projeto['_id']})))
     return jsonify(projetos), 200
 
 @app.route('/api/arquivos', methods=['GET'])
 def api_listar_arquivos():
     arquivos = converter_id_str(list(db_connection.Arquivos.find()))
-    #for arquivo in arquivos:
-        #arquivo['arquivos'] = converter_id_str(list(db_connection.Arquivos.find({"projeto_id": projeto['_id']})))
     return jsonify(arquivos), 200
 
 

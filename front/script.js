@@ -7,6 +7,8 @@ document.getElementById('updateUrlLink').addEventListener('click', function(even
     // Create a URLSearchParams object based on the current query string
     const params = new URLSearchParams(window.location.search);
 
+    
+
     // Set the new PID parameter
     params.set('pid', pid);
 
@@ -17,14 +19,54 @@ document.getElementById('updateUrlLink').addEventListener('click', function(even
 
 });
 
+document.getElementById('searchForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent the default form submission
+
+    // Get the values of the filter select boxes
+    const tag = document.getElementById('pesquisa').value;
+    const nome = document.getElementById('nome').value;
+    const extensao = document.getElementById('extensao').value;
+    const tags = document.getElementById('tags').value;
+    const areaConhecimento = document.getElementById('area_conhecimento').value;
+    const habilidades = document.getElementById('habilidades').value;
+
+    // Create a URLSearchParams object to build the query string
+    const params = new URLSearchParams();
+    params.set('tag', tag);
+    params.set('nome', nome);
+    params.set('extensao', extensao);
+    params.set('tags', tags);
+    params.set('area_conhecimento', areaConhecimento);
+    params.set('habilidades', habilidades);
+
+    // Redirect to the new URL with the query parameters
+    window.location.href = `${this.action}?${params.toString()}`;
+});
+
 document.addEventListener("DOMContentLoaded", function() {
     const params = new URLSearchParams(window.location.search);
-    const tag = params.get("tag");
+    //const tag = params.get("tag");
     const pid = params.get("pid");
+
+    // Set default values or read from URL
+    const tag = params.get("tag") || "";
+    const nome = params.get("nome") || "on";
+    const extensao = params.get("extensao") || "on";
+    const tags = params.get("tags") || "on";
+    const areaConhecimento = params.get("area_conhecimento") || "on";
+    const habilidades = params.get("habilidades") || "on";
+    
+    // Set the form fields
+    document.getElementById("pesquisa").value = tag;
+    document.getElementById("nome").value = nome;
+    document.getElementById("extensao").value = extensao;
+    document.getElementById("tags").value = tags;
+    document.getElementById("area_conhecimento").value = areaConhecimento;
+    document.getElementById("habilidades").value = habilidades;
 
     if (tag) {
 
-        open_that_json(tag, pid);
+        open_that_json(tag, pid, nome, extensao, tags, areaConhecimento, habilidades);
 
     } else {
         document.getElementById("resultados").textContent = "Nenhuma tag fornecida.";
@@ -33,109 +75,99 @@ document.addEventListener("DOMContentLoaded", function() {
 
 var has_or_not = 0;
 
-async function open_that_json(tag, pid) {
-    console.log("lendo open json")
-    const response = await fetch('http://localhost:5000/api/projetos');
-    const datalist = await response.json();
-
-    //populateHeader(datalist);
+async function open_that_json(tag, pid, nome, extensao, tags, areaConhecimento, habilidades) {
+    const response = await fetch('http://localhost:5000/api/projetos', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            term: tag,
+            filters: {
+                nome: nome === 'on',
+                extensao: extensao === 'on',
+                tags: tags === 'on',
+                area_conhecimento: areaConhecimento === 'on',
+                habilidades: habilidades === 'on'
+            }
+        })
+    });
+    
+    const data = await response.json();
+    const projetos = data.projetos;
+    const arquivos = data.arquivos;
 
     has_or_not = 0;
 
-    check_for_tag(datalist, tag, pid);
-
-    if (has_or_not == 1) {
+    if (projetos.length || arquivos.length) {
+        has_or_not = 1;
         document.getElementById("resultados").textContent = `Resultados para: ${tag}`;
         document.getElementById("pesquisa").placeholder = tag;
-        //document.getElementById("fetched").textContent = `Resultados para: ${tag}`;
+        // Display projects and files
+        check_for_tag(projetos, arquivos, tag, pid);
     } else {
         document.getElementById("resultados").textContent = `Não foi encontrado nada com a tag ${tag}.`;
     }
-
 }
 
-function check_for_tag(projetos, target, pid) {
-    console.log("lendo check tag")
+
+function check_for_tag(projetos, arquivos, target, pid) {
+    console.log("Searching projects and files...");
     const section = document.getElementById("fetched");
-    //const articles = obj.artigos;
+    section.innerHTML = ''; // Clear previous results
 
-    //const maximumthing = Math.min(pid, articles);
+    let i = 0;
 
-    var i = -1;
-
+    // Display all matching projects
     for (const projeto of projetos) {
-        i = i+1;
-        if ( (i < pid) || (i > pid+51) ){
+        if ((i < pid) || (i > pid + 51)) {
             continue;
         }
 
         
-        //for (const i = 0; i < maximumthing; i += 1) {
+            has_or_not = 1;
 
+            const myArticle = document.createElement("h2");
+            myArticle.style.textAlign = "center";
+            myArticle.classList.add("infobox");
 
-        //const tagmax = arti.tags;
-        for (const tag of projeto.tags) {
+            const link = document.createElement('a');
+            link.href = `arquivo.html?post_id=${projeto._id}`;
+            link.textContent = projeto.nome;
+            myArticle.appendChild(link);
 
-            if (tag.toLowerCase() == target.toLowerCase()) {
-                console.log("tem sim")
-                has_or_not = 1;
+            const myDesc = document.createElement("h6");
+            myDesc.textContent = projeto.descricao;
+            myDesc.style.textAlign = "center";
+            myArticle.appendChild(myDesc);
 
-                const myArticle = document.createElement("h2");
-                //myArticle.textContent = arti.titulo;
-                myArticle.style.textAlign = "center";
-                myArticle.classList.add("infobox");
+            section.appendChild(myArticle);
+        
+    }
 
-                const link = document.createElement('a');
-                link.href = 'arquivo.html';
-                link.textContent = projeto.nome;
-                myArticle.appendChild(link);
-
-                const linebreak = document.createElement("br");
-
-                const myAuthor = document.createElement("h5");
-                myAuthor.textContent = projeto.autor;
-                myAuthor.style.textAlign = "center";
-
-                const linebreak2 = document.createElement("br");
-
-
-
-                const myDesc = document.createElement("h6");
-                myDesc.textContent = projeto.descricao;
-                myDesc.style.textAlign = "center";
-
-
-
-                const linebreak3 = document.createElement("br");
-
-                myArticle.appendChild(linebreak);
-
-                myArticle.appendChild(myAuthor);
-                myArticle.appendChild(linebreak2);
-                if ( ((projeto.imagem == "") && (typeof projeto.imagem != undefined)) || 1 == 1 ) {
-                    myArticle.appendChild(myDesc);
-                } else {
-                    const myImg = document.createElement('img');
-                    myImg.src = projeto.imagem;
-                    myImg.setAttribute('width', "90%");
-                    myImg.setAttribute('height', "50%");
-                    myImg.style.position = "absolute";
-                    myImg.style.top = "10vh";
-                    myImg.style.left = "1vw";
-
-                    myArticle.appendChild(myImg); 
-
-
-                }
-                section.appendChild(myArticle);
-
-                section.appendChild(linebreak3);
-
-            } else {
-                console.log("tem nao")
-            }
-
+    // Display all matching files (and link them to the parent project)
+    for (const arquivo of arquivos) {
+        if ((i < pid) || (i > pid + 51)) {
+            continue;
         }
 
+        
+            has_or_not = 1;
+
+            const myArticle = document.createElement("h2");
+            myArticle.style.textAlign = "center";
+            myArticle.classList.add("infobox");
+
+            const link = document.createElement('a');
+            // Link to the parent project, not the file itself
+            link.href = `arquivo.html?post_id=${arquivo.projeto_id}`;
+            link.textContent = `File: ${arquivo.nome}`;
+            myArticle.appendChild(link);
+
+            const myDesc = document.createElement("h6");
+            myDesc.textContent = arquivo.extensao;
+            myDesc.style.textAlign = "center";
+            myArticle.appendChild(myDesc);
+
+            section.appendChild(myArticle);
+        
     }
 }

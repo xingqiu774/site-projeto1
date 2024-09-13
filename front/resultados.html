@@ -12,7 +12,7 @@
     <div class="container3">
         <div class="sc3 sc4">
             <a href="lp.html"><img src="" alt="Logo" id="ttiger"></a>
-            <form action="resultados.html" method="get" autocomplete="on">
+            <form id="searchForm" action="resultados.html" method="get" autocomplete="on">
                 <input type="text" name="tag" placeholder="Digite a tag para buscar" class="searchBox" id="pesquisa">
                 <button type="submit" class="searchButton">Buscar</button>
             </form>
@@ -26,21 +26,39 @@
 
 <div class="all">
     <div class="leftside">
+
         <div class="choosebox">
-            <select name="disciplina" id="disciplina">
-                <option value="disciplina">Disciplina</option>
+            <select name="nome" id="nome">
+                <option value="on">Nome ON</option>
+                <option value="off">Nome OFF</option>
             </select>
         </div> 
 
         <div class="choosebox">
-            <select name="saber" id="disciplina">
-                <option value="saber">Saber</option>
+            <select name="extensao" id="extensao">
+                <option value="on">Ext ON</option>
+                <option value="off">Ext OFF</option>
+            </select>
+        </div> 
+
+        <div class="choosebox">
+            <select name="tags" id="tags">
+                <option value="on">Tags ON</option>
+                <option value="off">Tags OFF</option>
+            </select>
+        </div> 
+
+        <div class="choosebox">
+            <select name="area_conhecimento" id="area_conhecimento">
+                <option value="on">Saber ON</option>
+                <option value="off">Saber OFF</option>
             </select>
         </div> 
         
         <div class="choosebox">
-            <select name="saber" id="habilidade">
-                <option value="habilidade">Hablididade</option>
+            <select name="habilidades" id="habilidades">
+                <option value="on">Habilidade ON</option>
+                <option value="off">Habilidade OFF</option>
             </select>
         </div> 
     </div>
