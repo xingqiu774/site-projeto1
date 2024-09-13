@@ -1,1 +1,2 @@
 ESSA PASTA ESTA DESATUALIZADA PQ O JAIR TA MEXENDO NUNS BAGUI E ELE NN SABE USAR O GITHUB AINDA
+(ele ja sabe agora, so esta sem um readme pq sim)
