@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Landing Page</title>
     <link rel="stylesheet" href="styles.css">
-    
+    <script src="script_arq.js" defer></script>
 </head>
 <body>
 
@@ -27,28 +27,31 @@
 
 
 <div class="classContainer">
-    <div class="archiveContainer">
+    <div class="archiveContainer" id="archiveContainer">
         <div>
             <h2 id="archives">Arquivos da aula</h2>
         </div>
         <div class="archiveItem">
-            Comomataraula.txt
+            example1.txt
         </div>
-        <div class="archiveItem">
-            Comoterminarcomsuanamoradaviazap.pdf
-        </div>
+        
     </div>
     <div class="archiveInfo">
         <div>
             <h2 class="outlined centered titulo">Arquivo</h2>
         </div>
         <div class="archiveCPF">
-            <h3>Aula X</h3>
-            <p>Autor: Fulano</p>
-            <p>Data de criação: XX/XX/XXXX</p>
-            <p>Descrição: Essa aula tá aqui só pra servir de teste de como vão ficar as informações das aulas para termos uma noção melhor.</p>
+            <h3 id="nome">Aula X</h3>
+            <p id="desc">Descrição: Essa aula tá aqui só pra servir de teste de como vão ficar as informações das aulas para termos uma noção melhor.</p>
+            <div class="sidebyside">
+                <p id="autor">Autor: NASU</p>
+                <p id="data_envio">data_envio: XX/XX/XXXX</p>
+                <p id="baixareste"><a href=""> Baixar Este </a></p>
+                <p id="baixartudo"><a href=""> Baixar Tudo </a></p>
+            </div>
+            
         </div>
-        <div class="previewhelp">
+        <div class="previewhelp" id="preview">
             <embed src="Comomataraula.txt" class="previewbox">
         </div>
     </div>

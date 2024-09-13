@@ -334,3 +334,9 @@ body        {
     text-align: center;
     padding: 10px;
 }
+
+
+.sidebyside {
+    display: flex;
+    justify-content: space-around;
+}

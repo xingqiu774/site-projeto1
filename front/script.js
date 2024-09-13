@@ -104,7 +104,7 @@ async function open_that_json(tag, pid, nome, extensao, tags, areaConhecimento, 
         // Display projects and files
         check_for_tag(projetos, arquivos, tag, pid);
     } else {
-        document.getElementById("resultados").textContent = `Não foi encontrado nada com a tag ${tag}.`;
+        document.getElementById("resultados").textContent = `Não foi encontrado nada para ${tag} com os filtros selecionados.`;
     }
 }
 
