@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request, render_template, send_file
+from flask import Flask, jsonify, request, render_template, send_file, make_response
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 import gridfs
@@ -175,7 +175,7 @@ def criar_projeto():
 
             arquivo_info = {
                 "nome": request.form.get(f'nome_arquivo_{i}'),
-                "extensao": request.form.get(f'extensao_arquivo_{i}'),
+                "extensao": request.form.get(f'tipo_arquivo_{i}'),
                 "tags": file_tags,  # Save file tags as an array
                 "area_conhecimento": request.form.get(f'area_conhecimento_{i}'),
                 "habilidades": skill_tags,
@@ -215,6 +215,26 @@ def api_listar_projetos():
 def api_listar_arquivos():
     arquivos = converter_id_str(list(db_connection.Arquivos.find()))
     return jsonify(arquivos), 200
+
+
+
+@app.route('/view/<file_id>', methods=['GET'])
+def view_arquivo(file_id):
+    try:
+        file = fs.get(ObjectId(file_id))
+        response = send_file(
+            io.BytesIO(file.read()),
+            download_name=file.filename,
+            as_attachment=False  # Set to False to allow inline viewing
+        )
+        
+        # Set content-type dynamically based on the file extension if needed
+        response.headers['Content-Type'] = file.content_type  # Ensure content type is set
+        return response
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
 
 
 if __name__ == '__main__':

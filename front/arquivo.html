@@ -6,6 +6,7 @@
     <title>Landing Page</title>
     <link rel="stylesheet" href="styles.css">
     <script src="script_arq.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
@@ -52,16 +53,20 @@
                 <p id="data_envio">Área de Conhecimento: Linguagens e códigos</p>
                 <p>Competência: EM13LGG103, EM13LP103 </p>
                 <p id="project_tags">Tags: example, amor, redação</p>
-                <a href="">Baixar todo o material didático <span class="material-symbols-outlined rebaixa">download</span></a>
+                <p>Baixar todo o material didático <button id="downloadAll" class="material-symbols-outlined rebaixa">download</button></p>
             </div>
             
         </div>
-        <div class="previewhelp">
-            <p>Esaasdwasd</p>
-            <div class="embedStyle">
-                <embed src="Comomataraula.txt" class="previewbox">
+        <div class="preview-container" id="previewContainer">
+            <p id="filename">Arquivo deve aparecer aqui.</p>
+            <div class="preview-box" id="previewBox">
+                <!-- The embed will go here dynamically -->
             </div>
         </div>
+        
+        
+        
+        
     </div>
 </div>
 </body>

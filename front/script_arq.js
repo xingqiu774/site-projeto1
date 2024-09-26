@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 subArchiveItem3.textContent = "download";
                 // Set up click event for file preview
                 subArchiveItem3.addEventListener("click", function () {
-                    displayPreview(arquivo);
+                    downloadFile(arquivo);
                 });
                 let subArchiveItem4 = document.createElement("button");
                 subArchiveItem4.className = "material-symbols-outlined rebaixa";
@@ -72,6 +72,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 });
 
                 subArchiveItem2.appendChild(subArchiveItem3);
+                subArchiveItem2.appendChild(subArchiveItem4);
                 arquivoItem.appendChild(subArchiveItem2);
 
                 archiveContainer.appendChild(arquivoItem);
@@ -83,8 +84,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         // Set up "Baixar Tudo" link to download all files
-        const baixarTudo = document.getElementById("baixartudo");
-        baixarTudo.innerHTML = `<a href="#" id="downloadAll">Baixar Tudo</a>`;
+        
         document.getElementById("downloadAll").addEventListener("click", function (e) {
             e.preventDefault();
             downloadAllFiles(arquivos);
@@ -92,13 +92,49 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function displayPreview(arquivo) {
-        const previewBox = document.getElementById("preview");
-        previewBox.innerHTML = `<embed src="http://localhost:5000/download/${arquivo.file_id}" class="previewbox">`;
-
-        // Set up the "Baixar Este" link for the current file
-        const baixarEste = document.getElementById("baixareste");
-        baixarEste.innerHTML = `<a href="http://localhost:5000/download/${arquivo.file_id}">Baixar Este</a>`;
+        // Update the filename text
+        const filenameElement = document.getElementById("filename");
+        filenameElement.textContent = arquivo.nome;
+    
+        // Get the preview box container
+        const previewBox = document.getElementById("previewBox");
+    
+        // Clear any previous content
+        previewBox.innerHTML = '';
+    
+        // Use the 'extensao' field to determine the file type
+        const fileExtension = arquivo.extensao.toLowerCase();
+    
+        if (fileExtension === 'pdf') {
+            // For PDFs, use an iframe
+            const iframeElement = document.createElement('iframe');
+            iframeElement.src = `http://localhost:5000/view/${arquivo.file_id}`;
+            iframeElement.classList.add('embed-content');
+            iframeElement.style.height = '800px'; // Set a reasonable height for PDF viewing
+            previewBox.appendChild(iframeElement);
+        } else if (fileExtension === 'md') {
+            // For Markdown files, fetch the content and render it using marked.js
+            fetch(`http://localhost:5000/view/${arquivo.file_id}`)
+                .then(response => response.text())
+                .then(markdownText => {
+                    const renderedMarkdown = marked.parse(markdownText);
+                    const markdownContainer = document.createElement('div');
+                    markdownContainer.innerHTML = renderedMarkdown;
+                    markdownContainer.classList.add('embed-content');
+                    previewBox.appendChild(markdownContainer);
+                })
+                .catch(error => console.error('Error loading markdown:', error));
+        } else {
+            // For other file types (like .txt), use an embed
+            const embedElement = document.createElement('embed');
+            embedElement.src = `http://localhost:5000/view/${arquivo.file_id}`;
+            embedElement.classList.add('embed-content');
+            previewBox.appendChild(embedElement);
+        }
     }
+    
+    
+    
 
     function downloadAllFiles(arquivos) {
         arquivos.forEach(arquivo => {
@@ -107,5 +143,14 @@ document.addEventListener("DOMContentLoaded", function () {
             link.download = arquivo.nome;
             link.click();
         });
+    }
+
+    function downloadFile(arquivo) {
+
+        const link = document.createElement("a");
+        link.href = `http://localhost:5000/download/${arquivo.file_id}`;
+        link.download = arquivo.nome;
+        link.click();
+
     }
 });
