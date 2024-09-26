@@ -50,14 +50,22 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (arquivos.length > 0) {
             arquivos.forEach(arquivo => {
-                const arquivoItem = document.createElement("div");
+                let arquivoItem = document.createElement("div");
                 arquivoItem.className = "archiveItem";
-                arquivoItem.textContent = arquivo.nome;
+                
+                let subArchiveItem2 = document.createElement("p");
+                subArchiveItem2.textContent = arquivo.nome;
 
+                let subArchiveItem3 = document.createElement("span");
+                arquivoItem.className = "material-symbols-outlined rebaixa";
+                subArchiveItem3.textContent = "download";
                 // Set up click event for file preview
-                arquivoItem.addEventListener("click", function () {
+                subArchiveItem3.addEventListener("click", function () {
                     displayPreview(arquivo);
                 });
+
+                subArchiveItem2.appendChild(subArchiveItem3);
+                arquivoItem.appendChild(subArchiveItem2);
 
                 archiveContainer.appendChild(arquivoItem);
             });

@@ -58,11 +58,11 @@ document.addEventListener("DOMContentLoaded", function() {
     
     // Set the form fields
     document.getElementById("pesquisa").value = tag;
-    document.getElementById("nome").value = nome;
-    document.getElementById("extensao").value = extensao;
-    document.getElementById("tags").value = tags;
-    document.getElementById("area_conhecimento").value = areaConhecimento;
-    document.getElementById("habilidades").value = habilidades;
+    //document.getElementById("nome").value = nome;
+    //document.getElementById("extensao").value = extensao;
+    //document.getElementById("tags").value = tags;
+    //document.getElementById("area_conhecimento").value = areaConhecimento;
+    //document.getElementById("habilidades").value = habilidades;
 
     if (tag) {
 
