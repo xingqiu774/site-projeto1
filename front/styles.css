@@ -73,6 +73,9 @@ body        {
     box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3);
     align-items: center;
     justify-content: center;
+    gap: 5%;
+    padding: 20px;
+    width: 100%;
 }
 
 .container8     {
@@ -336,6 +339,18 @@ body        {
 .shape      {
     position: relative;
     display: inline-block;
+}
+
+.bloco  {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 350px;
+    height: 400px;
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #555;
+    border-radius: 15px;
 }
 
 #archives   {
