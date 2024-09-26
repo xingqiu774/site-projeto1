@@ -56,8 +56,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 let subArchiveItem2 = document.createElement("p");
                 subArchiveItem2.textContent = arquivo.nome;
 
-                let subArchiveItem3 = document.createElement("span");
-                arquivoItem.className = "material-symbols-outlined rebaixa";
+                let subArchiveItem3 = document.createElement("button");
+                subArchiveItem3.className = "material-symbols-outlined rebaixa";
                 subArchiveItem3.textContent = "download";
                 // Set up click event for file preview
                 subArchiveItem3.addEventListener("click", function () {
