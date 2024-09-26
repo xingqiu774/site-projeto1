@@ -3,18 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resultados da Busca</title>
+    <title>Landing Page</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="script.js" defer></script>
+    <script src="script_lp.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
-<body>
+<body class="poppins-regular">
     <!-- Flexbox da barra superior -->
     <div class="container3">
         <div class="sc3 sc4">
-            <a href="lp.html"><img src="" alt="Logo" id="ttiger"></a>
+            <a href="lp.html"><img src="CEnPE_Logo.png" alt="Logo" id="ttiger"></a>
             <form id="searchForm" action="resultados.html" method="get" autocomplete="on">
-                <input type="text" name="tag" placeholder="Digite a tag para buscar" class="searchBox" id="pesquisa">
-                <button type="submit" class="searchButton">Buscar</button>
+                <button type="submit" class="searchButton"><span class="material-symbols-outlined">search</span></button>
+                <input type="text" name="tag" placeholder="Pesquisar" class="searchBox" id="pesquisa">
             </form>
         </div>
         <div class="container8">
@@ -64,10 +68,6 @@
     </div>
     
     <div class="rightside">
-
-        <h2 class="outlined centered titulo"> <a href=""> Resultados </a></h2>
-        <a href="#" id="updateUrlLink" data-pid="50">→</a>
-
         <!-- JS pegando a tag -->
         <div class="centerbox">
             <h1 id="resultados"></h1>
@@ -77,6 +77,7 @@
         <div class="container7" id="fetched">    
             <br>
         </div>
+        <a href="#" id="updateUrlLink" data-pid="50">Próxima página</a>
 
 
     </div><!-- Fim da parte da direita VIVA A ESQUERDA!-->
