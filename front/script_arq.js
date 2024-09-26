@@ -137,13 +137,16 @@ document.addEventListener("DOMContentLoaded", function () {
     
 
     function downloadAllFiles(arquivos) {
-        arquivos.forEach(arquivo => {
-            const link = document.createElement("a");
-            link.href = `http://localhost:5000/download/${arquivo.file_id}`;
-            link.download = arquivo.nome;
-            link.click();
+        arquivos.forEach((arquivo, index) => {
+            setTimeout(() => {
+                const link = document.createElement("a");
+                link.href = `http://localhost:5000/download/${arquivo.file_id}`;
+                link.download = arquivo.nome;
+                link.click();
+            }, index * 1000); // Adjust the delay time as needed (e.g., 1000 ms = 1 second)
         });
     }
+    
 
     function downloadFile(arquivo) {
 
