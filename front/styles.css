@@ -81,6 +81,8 @@ body        {
     justify-content: space-around;
     align-items: center;
     gap: 10%;
+    position: relative;
+    right: 5%;
 }
 
 .sc3    {
