@@ -231,6 +231,7 @@ body        {
     border-radius: 15px;
 }
 
+
 .previewhelp    {
     margin-top: 3%;
     height: 40vh;
@@ -388,6 +389,10 @@ body        {
     padding: 10px;
     background-color: #555;
     border-radius: 15px;
+}
+
+.results_desc_block{
+    overflow-y: auto;
 }
 
 #archives   {

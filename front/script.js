@@ -150,19 +150,28 @@ function check_for_tag(projetos, arquivos, target, pid) {
 
             let div = document.createElement("div");
             div.classList.add("bloco");
+
+            
+
             let thumbnail = document.createElement("img");
             //thumbnail.src = "banjo.jpg";
             thumbnail.style.height = "30%"
             thumbnail.style.width = "50%";
 
             let title = document.createElement("span");
-            title.textContent = projeto.nome;
             title.style.marginTop = "10px";
             title.style.marginBottom = "10px";
             title.classList.add("poppins-extrabold");
 
+            const link = document.createElement('a');
+            link.textContent = projeto.nome;
+            link.href = `arquivo.html?post_id=${projeto._id}`;
+            title.appendChild(link);
+            
+
             let desc = document.createElement("span");
             desc.textContent = projeto.descricao;
+            desc.classList.add("results_desc_block");
 
             let dateSymbol = document.createElement("span");
             dateSymbol.classList.add("material-symbols-outlined");
