@@ -63,6 +63,13 @@ document.addEventListener("DOMContentLoaded", function () {
                 subArchiveItem3.addEventListener("click", function () {
                     displayPreview(arquivo);
                 });
+                let subArchiveItem4 = document.createElement("button");
+                subArchiveItem4.className = "material-symbols-outlined rebaixa";
+                subArchiveItem4.textContent = "file_open";
+                // Set up click event for file preview
+                subArchiveItem4.addEventListener("click", function () {
+                    displayPreview(arquivo);
+                });
 
                 subArchiveItem2.appendChild(subArchiveItem3);
                 arquivoItem.appendChild(subArchiveItem2);
