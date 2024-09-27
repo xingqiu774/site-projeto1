@@ -42,6 +42,7 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("desc").textContent = `Descrição: ${projeto.descricao || "Sem descrição"}`;
         document.getElementById("autor").textContent = `Autor: ${projeto.autor || "Desconhecido"}`;
         document.getElementById("data_envio").textContent = `Data de Envio: ${projeto.data_envio || "Sem data"}`;
+        document.getElementById("project_tags").textContent = `Tags: ${projeto.tags || "Sem tags"}`;
     }
 
     function populateArquivosList(arquivos) {
@@ -63,16 +64,24 @@ document.addEventListener("DOMContentLoaded", function () {
                 subArchiveItem3.addEventListener("click", function () {
                     downloadFile(arquivo);
                 });
-                let subArchiveItem4 = document.createElement("button");
-                subArchiveItem4.className = "material-symbols-outlined rebaixa";
-                subArchiveItem4.textContent = "file_open";
-                // Set up click event for file preview
-                subArchiveItem4.addEventListener("click", function () {
-                    displayPreview(arquivo);
-                });
 
                 subArchiveItem2.appendChild(subArchiveItem3);
-                subArchiveItem2.appendChild(subArchiveItem4);
+
+                let fileExtension = arquivo.extensao.toLowerCase();
+
+                if (fileExtension != "pdf"){
+                    let subArchiveItem4 = document.createElement("button");
+                    subArchiveItem4.className = "material-symbols-outlined rebaixa";
+                    subArchiveItem4.textContent = "file_open";
+                    // Set up click event for file preview
+                    subArchiveItem4.addEventListener("click", function () {
+                        displayPreview(arquivo);
+                    });
+
+                    subArchiveItem2.appendChild(subArchiveItem4);
+                }
+
+                
                 arquivoItem.appendChild(subArchiveItem2);
 
                 archiveContainer.appendChild(arquivoItem);
