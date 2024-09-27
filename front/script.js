@@ -24,20 +24,20 @@ document.getElementById('searchForm').addEventListener('submit', function(event)
 
     // Get the values of the filter select boxes
     const tag = document.getElementById('pesquisa').value;
-    const nome = document.getElementById('nome').value;
-    const extensao = document.getElementById('extensao').value;
-    const tags = document.getElementById('tags').value;
-    const areaConhecimento = document.getElementById('area_conhecimento').value;
-    const habilidades = document.getElementById('habilidades').value;
+    //const nome = document.getElementById('nome').value;
+    //const extensao = document.getElementById('extensao').value;
+    //const tags = document.getElementById('tags').value;
+    //const areaConhecimento = document.getElementById('area_conhecimento').value;
+    //const habilidades = document.getElementById('habilidades').value;
 
     // Create a URLSearchParams object to build the query string
     const params = new URLSearchParams();
     params.set('tag', tag);
-    params.set('nome', nome);
-    params.set('extensao', extensao);
-    params.set('tags', tags);
-    params.set('area_conhecimento', areaConhecimento);
-    params.set('habilidades', habilidades);
+    //params.set('nome', nome);
+    //params.set('extensao', extensao);
+    //params.set('tags', tags);
+    //params.set('area_conhecimento', areaConhecimento);
+    //params.set('habilidades', habilidades);
 
     // Redirect to the new URL with the query parameters
     window.location.href = `${this.action}?${params.toString()}`;
@@ -122,41 +122,18 @@ function check_for_tag(projetos, arquivos, target, pid) {
             continue;
         }
 
-        
-            has_or_not = 1;
 
-            
-            
-
-
-            /*
-            const myArticle = document.createElement("h2");
-            myArticle.style.textAlign = "center";
-            myArticle.classList.add("infobox");
-
-            const link = document.createElement('a');
-            link.href = `arquivo.html?post_id=${projeto._id}`;
-            link.textContent = projeto.nome;
-            myArticle.appendChild(link);
-
-            const myDesc = document.createElement("h6");
-            myDesc.textContent = projeto.descricao;
-            myDesc.style.textAlign = "center";
-            myArticle.appendChild(myDesc);
-            
-            
-
-            */
-
-            let div = document.createElement("div");
-            div.classList.add("bloco");
+        let div = document.createElement("div");
+        div.classList.add("bloco");
 
             
 
-            let thumbnail = document.createElement("img");
-            //thumbnail.src = "banjo.jpg";
-            thumbnail.style.height = "30%"
-            thumbnail.style.width = "50%";
+        let thumbnail = document.createElement("img");
+        thumbnail.src = `http://localhost:5000/thumbnail/${projeto._id}`;
+        thumbnail.style.height = "30%";
+        thumbnail.style.width = "50%";
+        //div.appendChild(thumbnail);
+
 
             let title = document.createElement("span");
             title.style.marginTop = "10px";

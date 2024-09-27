@@ -234,6 +234,36 @@ def view_arquivo(file_id):
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
+@app.route('/thumbnail/<projeto_id>', methods=['GET'])
+def get_thumbnail(projeto_id):
+    try:
+        # Search for the first .png or .jpg file associated with the project
+        image_file = db_connection.Arquivos.find_one({
+            "projeto_id": projeto_id,
+            "$or": [
+                {"extensao": {"$regex": "jpg$", "$options": "i"}},
+                {"extensao": {"$regex": "png$", "$options": "i"}}
+            ]
+        })
+
+        if not image_file:
+            return jsonify({"error": "No image file found for this project."}), 404
+
+        # Fetch the file using GridFS
+        file_id = image_file["file_id"]
+        file = fs.get(ObjectId(file_id))
+
+        # Return the image file as a response
+        response = send_file(
+            io.BytesIO(file.read()),
+            download_name=file.filename,
+            mimetype=file.content_type
+        )
+
+        return response
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 
 
